@@ -26,91 +26,91 @@ import org.apache.logging.log4j.Logger;
 import de.uni_potsdam.hpi.asg.breezegui.breezegraph.GuiMain;
 import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
 import de.uni_potsdam.hpi.asg.common.breeze.model.BreezeProject;
-import de.uni_potsdam.hpi.asg.common.io.LoggerHelper;
-import de.uni_potsdam.hpi.asg.common.io.WorkingdirGenerator;
+import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper;
+import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
 
 public class BreezeGuiMain {
 
-	private static Logger						logger;
-	private static BreezeGuiCommandlineOptions	options;
+    private static Logger                      logger;
+    private static BreezeGuiCommandlineOptions options;
 
-	public static void main(String[] args) {
-		int status = main2(args);
-		System.exit(status);
-	}
+    public static void main(String[] args) {
+        int status = main2(args);
+        System.exit(status);
+    }
 
-	public static int main2(String[] args) {
-		try {
-			long start = System.currentTimeMillis();
-			int status = -1;
-			options = new BreezeGuiCommandlineOptions();
-			if(options.parseCmdLine(args)) {
-				logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug());
-				String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
-				logger.info("ASGbreezeGui " + (version==null ? "Testmode" : "v" + version));
-				logger.debug("Args: " + Arrays.asList(args).toString());
-				WorkingdirGenerator.getInstance().create(null, null, "guitmp", null);
-				status = execute();
-				WorkingdirGenerator.getInstance().delete();
-			}
-			long end = System.currentTimeMillis();
-			if(logger != null) {
-				logger.info("Runtime: " + LoggerHelper.formatRuntime(end - start, false));
-			}
-			return status;
-		} catch(Exception e) {
-			System.out.println("An error occurred: " + e.getLocalizedMessage());
-			return 1;
-		}
-	}
+    public static int main2(String[] args) {
+        try {
+            long start = System.currentTimeMillis();
+            int status = -1;
+            options = new BreezeGuiCommandlineOptions();
+            if(options.parseCmdLine(args)) {
+                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug());
+                String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
+                logger.info("ASGbreezeGui " + (version == null ? "Testmode" : "v" + version));
+                logger.debug("Args: " + Arrays.asList(args).toString());
+                WorkingdirGenerator.getInstance().create(null, null, "guitmp", null);
+                status = execute();
+                WorkingdirGenerator.getInstance().delete();
+            }
+            long end = System.currentTimeMillis();
+            if(logger != null) {
+                logger.info("Runtime: " + LoggerHelper.formatRuntime(end - start, false));
+            }
+            return status;
+        } catch(Exception e) {
+            System.out.println("An error occurred: " + e.getLocalizedMessage());
+            return 1;
+        }
+    }
 
-	private static int execute() {
-		
-		BreezeProject proj = BreezeProject.create(options.getBrezeefile(), null, false, false);
-		if(proj == null) {
-			logger.error("Could not create Breeze project");
-			return -1;
-		}
-		
-		AbstractBreezeNetlist netlist = null;
-		for(AbstractBreezeNetlist n : proj.getSortedNetlists()) {
-			netlist = n;
-		}
-		if(netlist == null) {
-			logger.error("Breeze file did not contain a netlist");
-			return -1;
-		}
+    private static int execute() {
 
-		GuiMain gmain = new GuiMain(netlist, 1);
+        BreezeProject proj = BreezeProject.create(options.getBrezeefile(), null, false, false);
+        if(proj == null) {
+            logger.error("Could not create Breeze project");
+            return -1;
+        }
 
-		switch(options.getMode()) {
-			case "gui":
-				gmain.show();
-				while(!gmain.isClosed()) {
-					try {
-						Thread.sleep(1000);
-					} catch(InterruptedException e) {
-						logger.error(e.getLocalizedMessage());
-						return -1;
-					}
-				}
-				break;
-			case "png":
-				if(!gmain.exportPng(options.getOutfile())) {
-					return -1;
-				}
-				break;
-			case "svg":
-				if(!gmain.exportSvg(options.getOutfile())) {
-					return -1;
-				}
-				break;
-			default:
-				logger.error("Unknown mode: " + options.getMode());
-				return -1;
-		}
+        AbstractBreezeNetlist netlist = null;
+        for(AbstractBreezeNetlist n : proj.getSortedNetlists()) {
+            netlist = n;
+        }
+        if(netlist == null) {
+            logger.error("Breeze file did not contain a netlist");
+            return -1;
+        }
 
-		return 0;
+        GuiMain gmain = new GuiMain(netlist, 1);
 
-	}
+        switch(options.getMode()) {
+            case "gui":
+                gmain.show();
+                while(!gmain.isClosed()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch(InterruptedException e) {
+                        logger.error(e.getLocalizedMessage());
+                        return -1;
+                    }
+                }
+                break;
+            case "png":
+                if(!gmain.exportPng(options.getOutfile())) {
+                    return -1;
+                }
+                break;
+            case "svg":
+                if(!gmain.exportSvg(options.getOutfile())) {
+                    return -1;
+                }
+                break;
+            default:
+                logger.error("Unknown mode: " + options.getMode());
+                return -1;
+        }
+
+        return 0;
+
+    }
 }
