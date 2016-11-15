@@ -26,8 +26,8 @@ import org.apache.logging.log4j.Logger;
 import de.uni_potsdam.hpi.asg.breezegui.breezegraph.GuiMain;
 import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
 import de.uni_potsdam.hpi.asg.common.breeze.model.BreezeProject;
-import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper;
-import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
+import de.uni_potsdam.hpi.asg.common.io.LoggerHelper;
+import de.uni_potsdam.hpi.asg.common.io.WorkingdirGenerator;
 
 public class BreezeGuiMain {
 

@@ -24,7 +24,7 @@ import java.io.File;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
-import de.uni_potsdam.hpi.asg.common.iohelper.CommandlineOptions;
+import de.uni_potsdam.hpi.asg.common.io.CommandlineOptions;
 
 public class BreezeGuiCommandlineOptions extends CommandlineOptions {
 
