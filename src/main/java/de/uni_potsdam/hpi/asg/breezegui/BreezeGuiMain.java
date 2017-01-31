@@ -45,7 +45,7 @@ public class BreezeGuiMain {
             int status = -1;
             options = new BreezeGuiCommandlineOptions();
             if(options.parseCmdLine(args)) {
-                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug());
+                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug(), "/breezegui_log4j2.xml");
                 String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
                 logger.info("ASGbreezeGui " + (version == null ? "Testmode" : "v" + version));
                 logger.debug("Args: " + Arrays.asList(args).toString());
