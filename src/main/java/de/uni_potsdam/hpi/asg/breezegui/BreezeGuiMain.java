@@ -21,9 +21,7 @@ package de.uni_potsdam.hpi.asg.breezegui;
 
 import java.util.Arrays;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.status.StatusLogger;
 
 import de.uni_potsdam.hpi.asg.breezegui.breezegraph.GuiMain;
 import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
@@ -36,10 +34,6 @@ public class BreezeGuiMain {
     private static Logger                      logger;
     private static BreezeGuiCommandlineOptions options;
 
-    static {
-        StatusLogger.getLogger().setLevel(Level.OFF);
-    }
-
     public static void main(String[] args) {
         int status = main2(args);
         System.exit(status);
@@ -51,7 +45,7 @@ public class BreezeGuiMain {
             int status = -1;
             options = new BreezeGuiCommandlineOptions();
             if(options.parseCmdLine(args)) {
-                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug(), "/breezegui_log4j2.xml");
+                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug());
                 String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
                 logger.info("ASGbreezeGui " + (version == null ? "Testmode" : "v" + version));
                 logger.debug("Args: " + Arrays.asList(args).toString());

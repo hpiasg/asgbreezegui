@@ -68,12 +68,6 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 				</excludes>
 			</resource>
 			<resource>
-				<directory>./src/main/resources/jar</directory>
-				<includes>
-					<include>**/*</include>
-				</includes>
-			</resource>
-			<resource>
 				<directory>./src/assembly</directory>
 				<excludes>
 					<exclude>**/*</exclude>
@@ -142,6 +136,11 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 								<program>
 									<mainClass>de.uni_potsdam.hpi.asg.breezegui.BreezeGuiMain</mainClass>
 									<id>ASGbreezeGui</id>
+									<jvmSettings>
+										<extraArguments>
+											<extraArgument>-Dlog4j.configurationFile=@BASEDIR@/config/breezegui_log4j2.xml</extraArgument>
+										</extraArguments>
+									</jvmSettings>
 								</program>
 							</programs>
 							<repositoryLayout>flat</repositoryLayout>
@@ -200,6 +199,11 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 								<program>
 									<mainClass>de.uni_potsdam.hpi.asg.breezegui.BreezeGuiMain</mainClass>
 									<id>ASGbreezeGui</id>
+									<jvmSettings>
+										<extraArguments>
+											<extraArgument>-Dlog4j.configurationFile=@BASEDIR@/config/breezegui_log4j2.xml</extraArgument>
+										</extraArguments>
+									</jvmSettings>
 								</program>
 							</programs>
 							<repositoryLayout>flat</repositoryLayout>
