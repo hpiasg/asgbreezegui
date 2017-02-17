@@ -201,7 +201,7 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 									<id>ASGbreezeGui</id>
 									<jvmSettings>
 										<extraArguments>
-											<extraArgument>-Dlog4j.configurationFile=@BASEDIR@/config/logic_log4j2.xml</extraArgument>
+											<extraArgument>-Dlog4j.configurationFile=@BASEDIR@/config/log4j2_noconfig.xml</extraArgument>
 										</extraArguments>
 									</jvmSettings>
 								</program>
