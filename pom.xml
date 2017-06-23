@@ -142,6 +142,15 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 										</extraArguments>
 									</jvmSettings>
 								</program>
+								<program>
+									<mainClass>de.uni_potsdam.hpi.asg.breezegui.BreezeGuiRunMain</mainClass>
+									<id>ASGbreezeGui_run</id>
+									<jvmSettings>
+										<extraArguments>
+											<extraArgument>-Dlog4j.configurationFile=@BASEDIR@/config/log4j2_noconfig.xml</extraArgument>
+										</extraArguments>
+									</jvmSettings>
+								</program>
 							</programs>
 							<repositoryLayout>flat</repositoryLayout>
 							<repositoryName>lib</repositoryName>
