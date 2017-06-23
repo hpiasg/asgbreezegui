@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.breezegui;
 
 /*
- * Copyright (C) 2015 Norman Kluge
+ * Copyright (C) 2015 - 2017 Norman Kluge
  * 
  * This file is part of ASGbreezeGui.
  * 
@@ -25,26 +25,25 @@ import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
 import de.uni_potsdam.hpi.asg.common.iohelper.CommandlineOptions;
+import de.uni_potsdam.hpi.asg.common.misc.CommonConstants;
 
 public class BreezeGuiCommandlineOptions extends CommandlineOptions {
 
     public boolean parseCmdLine(String[] args) {
-        String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
-        String versionstr = "ASGbreezeGui " + (version == null ? "Testmode" : "v" + version);
-        return super.parseCmdLine(args, versionstr + "\nUsage: ASGbreezeGui [options] <breezefile>\nOptions:");
+        return super.parseCmdLine(args, "Usage: ASGbreezeGui [options] <breezefile>\nOptions:");
     }
 
     @Option(name = "-o", metaVar = "<level>", usage = "Outputlevel: 0:nothing\n1:errors\n[2:+warnings]\n3:+info")
     private int     outputlevel = 2;
     @Option(name = "-log", metaVar = "<logfile>", usage = "Define output Logfile, default is breezegui.log")
-    private File    logfile     = new File(System.getProperty("user.dir") + File.separator + "breezegui.log");
+    private File    logfile     = new File(System.getProperty("user.dir"), "breezegui" + CommonConstants.LOG_FILE_EXTENSION);
     @Option(name = "-debug")
     private boolean debug       = false;
 
     @Option(name = "-mode", metaVar = "<mode>", usage = "Operationmode: [gui]:Show GUI\npng:Export png\nsvg:Export svg")
     private String  mode        = "gui";
     @Option(name = "-out", metaVar = "<file>", usage = "Outfile for png or svg operation mode. Default is out")
-    private File    outfile     = new File(System.getProperty("user.dir") + File.separator + "out");
+    private File    outfile     = new File(System.getProperty("user.dir"), "out");
 
     @Argument(metaVar = "Breezefile", required = true)
     private File    brezeefile;
