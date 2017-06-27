@@ -33,8 +33,8 @@ public class BreezeGuiCommandlineOptions extends CommandlineOptions {
         return super.parseCmdLine(args, "Usage: ASGbreezeGui [options] <breezefile>\nOptions:");
     }
 
-    @Option(name = "-o", metaVar = "<level>", usage = "Outputlevel: 0:nothing\n1:errors\n[2:+warnings]\n3:+info")
-    private int     outputlevel = 2;
+    @Option(name = "-o", metaVar = "<level>", usage = "Outputlevel: 0:nothing\n1:errors\n2:+warnings\n[3:+info]")
+    private int     outputlevel = 3;
     @Option(name = "-log", metaVar = "<logfile>", usage = "Define output Logfile, default is breezegui.log")
     private File    logfile     = new File(System.getProperty("user.dir"), "breezegui" + CommonConstants.LOG_FILE_EXTENSION);
     @Option(name = "-debug")
