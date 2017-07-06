@@ -1,7 +1,7 @@
 package de.uni_potsdam.hpi.asg.breezegui;
 
 /*
- * Copyright (C) 2015 Norman Kluge
+ * Copyright (C) 2015 - 2017 Norman Kluge
  * 
  * This file is part of ASGbreezeGui.
  * 
@@ -28,6 +28,7 @@ import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
 import de.uni_potsdam.hpi.asg.common.breeze.model.BreezeProject;
 import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper;
 import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
+import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper.Mode;
 
 public class BreezeGuiMain {
 
@@ -45,9 +46,7 @@ public class BreezeGuiMain {
             int status = -1;
             options = new BreezeGuiCommandlineOptions();
             if(options.parseCmdLine(args)) {
-                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug());
-                String version = BreezeGuiMain.class.getPackage().getImplementationVersion();
-                logger.info("ASGbreezeGui " + (version == null ? "Testmode" : "v" + version));
+                logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug(), Mode.cmdline);
                 logger.debug("Args: " + Arrays.asList(args).toString());
                 WorkingdirGenerator.getInstance().create(null, null, "guitmp", null);
                 status = execute();

@@ -13,6 +13,10 @@ To see a list of supported command line arguments execute
 
     bin/ASGbreezeGui
 
+To open a file chooser at startup execute
+
+	bin/ASGbreezeGui_run
+
 To show a graphical representation of a Breeze netlist on screen execute
 
     bin/ASGbreezeGui -mode gui /path/to/breezefile.breeze
