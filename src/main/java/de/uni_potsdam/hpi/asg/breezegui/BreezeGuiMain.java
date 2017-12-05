@@ -19,6 +19,8 @@ package de.uni_potsdam.hpi.asg.breezegui;
  * along with ASGbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.logging.log4j.Logger;
@@ -65,7 +67,15 @@ public class BreezeGuiMain {
 
     private static int execute() {
 
-        BreezeProject proj = BreezeProject.create(options.getBrezeefile(), null, false, false);
+        File actualBreezeFile;
+        try {
+            actualBreezeFile = options.getBrezeefile().getCanonicalFile();
+        } catch(IOException e) {
+            logger.error(e.getLocalizedMessage());
+            return -1;
+        }
+
+        BreezeProject proj = BreezeProject.create(actualBreezeFile, null, false, false);
         if(proj == null) {
             logger.error("Could not create Breeze project");
             return -1;
