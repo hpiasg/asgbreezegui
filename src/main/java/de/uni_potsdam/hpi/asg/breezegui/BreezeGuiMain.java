@@ -27,8 +27,8 @@ import de.uni_potsdam.hpi.asg.breezegui.breezegraph.GuiMain;
 import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
 import de.uni_potsdam.hpi.asg.common.breeze.model.BreezeProject;
 import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper;
-import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
 import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper.Mode;
+import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
 
 public class BreezeGuiMain {
 
@@ -48,7 +48,7 @@ public class BreezeGuiMain {
             if(options.parseCmdLine(args)) {
                 logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug(), Mode.cmdline);
                 logger.debug("Args: " + Arrays.asList(args).toString());
-                WorkingdirGenerator.getInstance().create(null, null, "guitmp", null);
+                WorkingdirGenerator.getInstance().create(null, null, "guitmp");
                 status = execute();
                 WorkingdirGenerator.getInstance().delete();
             }
