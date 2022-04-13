@@ -19,6 +19,8 @@ package de.uni_potsdam.hpi.asg.breezegui;
  * along with ASGbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.logging.log4j.Logger;
@@ -27,8 +29,8 @@ import de.uni_potsdam.hpi.asg.breezegui.breezegraph.GuiMain;
 import de.uni_potsdam.hpi.asg.common.breeze.model.AbstractBreezeNetlist;
 import de.uni_potsdam.hpi.asg.common.breeze.model.BreezeProject;
 import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper;
-import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
 import de.uni_potsdam.hpi.asg.common.iohelper.LoggerHelper.Mode;
+import de.uni_potsdam.hpi.asg.common.iohelper.WorkingdirGenerator;
 
 public class BreezeGuiMain {
 
@@ -48,7 +50,7 @@ public class BreezeGuiMain {
             if(options.parseCmdLine(args)) {
                 logger = LoggerHelper.initLogger(options.getOutputlevel(), options.getLogfile(), options.isDebug(), Mode.cmdline);
                 logger.debug("Args: " + Arrays.asList(args).toString());
-                WorkingdirGenerator.getInstance().create(null, null, "guitmp", null);
+                WorkingdirGenerator.getInstance().create(null, null, "guitmp");
                 status = execute();
                 WorkingdirGenerator.getInstance().delete();
             }
@@ -65,7 +67,15 @@ public class BreezeGuiMain {
 
     private static int execute() {
 
-        BreezeProject proj = BreezeProject.create(options.getBrezeefile(), null, false, false);
+        File actualBreezeFile;
+        try {
+            actualBreezeFile = options.getBrezeefile().getCanonicalFile();
+        } catch(IOException e) {
+            logger.error(e.getLocalizedMessage());
+            return -1;
+        }
+
+        BreezeProject proj = BreezeProject.create(actualBreezeFile, null, false, false);
         if(proj == null) {
             logger.error("Could not create Breeze project");
             return -1;
