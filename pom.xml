@@ -22,7 +22,7 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.uni_potsdam.hpi.asg</groupId>
 	<artifactId>asgbreezegui</artifactId>
-	<version>1.2.1</version>
+	<version>1.2.2</version>
 	<organization>
 		<name>Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH</name>
 		<url>http://www.hpi.uni-potsdam.de</url>
@@ -279,7 +279,7 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

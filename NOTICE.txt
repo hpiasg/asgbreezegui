@@ -1,4 +1,4 @@
-ASGbreezeGui v1.2.1
+ASGbreezeGui v1.2.2
 Copyright (C) 2012-2022 Hasso-Plattner-Institut für Digital Engineering gGmbH
 
 This product includes software developed at Hasso-Plattner-Institut für Digital Engineering gGmbH.
@@ -26,6 +26,6 @@ http://www.jgraph.com/
 Copyright (c) 2001-2014, JGraph Ltd
 Licensed under the 3 clause BSD license
 
-JUnit v4.12
+JUnit v4.13.1
 http://junit.org/
 Licensed under the Common Public License Version 1.0
