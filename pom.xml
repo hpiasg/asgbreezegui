@@ -43,7 +43,7 @@ along with ASbreezeGui.  If not, see <http://www.gnu.org/licenses/>.
 	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<common.version>4.0.0</common.version>
+		<common.version>4.0.4</common.version>
 	</properties>
 	<build>
 		<resources>
