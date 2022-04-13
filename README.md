@@ -46,7 +46,7 @@ To export a graph to svg directly execute
 
 ### Build instructions ###
 
-To build ASGbreezeGui, Apache Maven v3 (or later) and the Java Development Kit (JDK) v1.7 (or later) are required.
+To build ASGbreezeGui, Apache Maven v3.1.1 (or later) and the Java Development Kit (JDK) v1.8 (or later) are required.
 
 1. Build [ASGcommon](https://github.com/hpiasg/asgcommon)
 2. Execute `mvn clean install -DskipTests`
